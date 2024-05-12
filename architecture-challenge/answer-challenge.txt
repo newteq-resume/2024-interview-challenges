@@ -1,0 +1,46 @@
+The main database requires a couple of key elements and entities in order to track and serve the information that has been requested. The following entities in the database should be present (in a relational database):
+    - User
+    - Drawing
+    - Project
+    - ProjectDrawing
+    - DrawingPack
+    - DrawingPackDrawing
+    - DrawingPackUser
+    - DrawingPackNotification
+    - DrawingPackEmail
+
+With these entities, we should be able to track and manage everything in the use case. Along with this write up there is a drawing attached that outlines the bare minimum colums (properties) that these tables will need in order to track and amange everything. Again, this is considering a SQL database.
+
+(After some thought of this layout in a relational database, the argument could be made that a NoSQL (non relational database) could be used to simplify the structure. Further below I expand on how the NoSQL approach could be handled.)
+
+Some notes/comments about some of the entities and their properties
+- Drawing.File
+-- This file can be stored as a byte array or stored linked to a directory that the server has the files in, or stored as a "online directory" like a blob storage
+- ProjectDrawing
+-- This table just contains a link to all the drawings that are linked to a specific project. There can for example be 20 drawings linked to a project, but the architect only wants to create a pack of 6 drawings to send out to the team that will be working on that part of the "house" for example. That's where the DrawingPack comes into play. It stores the "package" with name and linked to a project, this will be linked to DrawingPackDrawing where each DrawingPack can have many drawings. This is where the 6 drawings for that project will be linked. Then the DrawingPackUser will link to a specific pack which will have the drawings linked to it.
+- The Notification and Email tables are simply ways for track downloads and "read" receipts
+
+How the user would use the system
+    - The user will go into a project
+    - The user will select the drawings from that project which can be a subset of all the drawings
+    - They can then make a "pack" which will be sent out to all the users that they select
+        - this is where most of the logic happens
+        - the user creates a pack by selecting X number of drawings
+        - they then also give this pack a name (to be identifable to them and the users receiving it)
+        - this creates a pack, which is linked 1 to 1 with the project
+        - the DrawingPackDrawing table then stores the selected drawings for that pack.
+        - then the DrawingPackUser table is populated with that newly created DrawingPackId and the user's id.
+        - using this table, with the new rows created, we will be able to create an email and notification record for each user to send out the emails and notifications within the app.
+        - when the user comes into the app, they will see a list of their notifications.
+        - when first time clicking on the notification it will be marked as read (or alternatively, if necessary, the user can click to agree that they have read it before it marks it as "read" (this is the "HasViewed" column))
+        - Everytime the user downloads, we increase the notification download by 1 and update the number of downloads
+            - alternatively for this what we can do is create a downloads table, which will have the notificationId and the download dates
+            -- I have included this in the design drawing too for example
+
+============================== Non Relational Database
+- If we were to go with a non relational database instead (which primarily stores the data in JSON), we could simplify the entities because it will allow us to have a list of items instead of having briding tables
+
+So the basic structure will stay the same for projects and drawings but the pack and user details for the pack would be different.
+
+I've got a JSON representation of what it would look like, in the file: noSQL-basic-design.ts
+One of the really cool things with this design is that it makes it easier to fine grain control the drawings that are given to each user. This can be done in the relational structure too, but it's much easier as demonstrated in this example of a non relational structure the example

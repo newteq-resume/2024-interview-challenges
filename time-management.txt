@@ -1,0 +1,56 @@
+project setup
+    - 1h
+    - 15m
+    - 45m
+working on home page
+    - 1h30
+    - 1h
+fiddling with the picture size
+    - 30m
+    - 45m
+    - 45m
+stop to have a design session
+    - 1h30
+investigating swiper
+    - 2h
+    - not going with this
+    ===== 10 hours
+actually getting a working mobile image home page
+    - 1h30
+layouts
+    - 3h
+    ===== 14h30
+data and functionality
+    - 2h15
+    ===== 16h45
+    - 30m
+    - 1h30
+    - 1h30
+    ===== 20h15
+mobile floorplan
+    - 1h45
+-----------------
+All main functionality completed = 22h
+
+=====================
+
+Architecutre Challenge
+----------------------
+Basic design (Relational Database)
+    - 1h30
+Non relational design
+    - 30m
+--------------------------
+Total = 2h
+
+===================================
+
+Code improvements
+-----------------
+
+creating components and general refactor
+    - 30m
+    -- 1:15
+
+--------------------------
+Total = 22

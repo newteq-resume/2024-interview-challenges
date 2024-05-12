@@ -1,0 +1,14 @@
+@use '../../../variables' as variables;
+
+.content-layout {
+  padding: 16px;
+
+  @media (max-width: variables.$breakpoint-sm) {
+    position: relative;
+    top: 0;
+    left: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+  }
+}

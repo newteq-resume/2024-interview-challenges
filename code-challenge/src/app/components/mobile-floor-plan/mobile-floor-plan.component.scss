@@ -1,0 +1,74 @@
+app-mobile-floor-plan {
+  .image-container {
+    position: relative;
+    height: 500px;
+    width: 395px;
+
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    img {
+      object-fit: contain;
+    }
+
+    .grid-overlay {
+      display: grid;
+      grid-template-areas:
+          'balcony living living'
+          'bedroom living living'
+          'bathroom entrance kitchen';
+      position: absolute;
+      height: 500px;
+      width: 395px;
+      grid-template-columns: 176px 75px 122px;
+      grid-template-rows: 98px 267px 103px;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 0.8rem;
+    }
+    .living {
+      grid-area: living;
+    }
+    .kitchen {
+      grid-area: kitchen;
+    }
+    .bathroom {
+      grid-area: bathroom;
+    }
+    .balcony {
+      grid-area: balcony;
+    }
+    .bedroom {
+      grid-area: bedroom;
+    }
+    .entrance {
+      grid-area: entrance;
+    }
+    .outside {
+      grid-area: outside;
+      margin-top: 0.5rem;
+    }
+
+    .living,.kitchen,.bathroom,.balcony,.bedroom,.entrance,.outside {
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+    }
+  }
+
+  .actions {
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    top: 1rem;
+    z-index: 10;
+    width: 100%;
+
+    button {
+      margin-right: 1rem;
+      margin-left: 1rem;
+    }
+  }
+}

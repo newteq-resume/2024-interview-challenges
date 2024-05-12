@@ -1,0 +1,156 @@
+@use '../../../variables' as variables;
+
+app-home-full-screen {
+  display: grid;
+  grid-template-areas:
+      'details actions'
+      'picture floorplan'
+      'summary room'
+      'summary contact';
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 100px minmax(600px, 1fr) min-content;
+
+  .basic-details {
+    grid-area: details;
+  }
+
+  .actions {
+    grid-area: actions;
+    justify-self: end;
+    align-self: center;
+
+    display: flex;
+    gap: 1rem;
+  }
+
+  .picture-details {
+    grid-area: picture;
+    position: relative;
+
+    .click-overlay {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0);
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .navigation {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    img {
+      object-fit: contain;
+    }
+  }
+
+  .floor-plan-details {
+    grid-area: floorplan;
+
+    position: relative;
+
+    .grid-overlay {
+      display: grid;
+      grid-template-areas:
+          'balcony living living'
+          'bedroom living living'
+          'bathroom entrance kitchen'
+          'outside outside outside';
+      grid-template-columns: 136px 59px 99px;
+      grid-template-rows: 78px 213px 81px auto;
+      position: absolute;
+      left: 51%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      height: 100%;
+      font-size: 0.75rem;
+    }
+
+    .living {
+      grid-area: living;
+    }
+
+    .kitchen {
+      grid-area: kitchen;
+    }
+
+    .bathroom {
+      grid-area: bathroom;
+    }
+
+    .balcony {
+      grid-area: balcony;
+    }
+
+    .bedroom {
+      grid-area: bedroom;
+    }
+
+    .entrance {
+      grid-area: entrance;
+    }
+
+    .outside {
+      grid-area: outside;
+      margin-top: 0.5rem;
+    }
+
+    .living, .kitchen, .bathroom, .balcony, .bedroom, .entrance, .outside {
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+    }
+
+    img {
+      object-fit: contain;
+    }
+  }
+
+  .summary-details {
+    grid-area: summary;
+
+    margin-top: 2rem;
+  }
+
+  .room-details {
+    grid-area: room;
+    margin-top: 2rem;
+    margin-left: 1rem;
+  }
+
+  .contact-details {
+    grid-area: contact;
+
+    margin-top: 2rem;
+    margin-left: 1rem;
+  }
+
+  @media (max-width: variables.$breakpoint-md) {
+    grid-template-rows: 80px minmax(400px, 1fr) min-content;
+
+    .contact-details {
+      margin-left: 1rem;
+    }
+  }
+
+  @media (min-width: variables.$breakpoint-md + 1) {
+    max-width: variables.$breakpoint-md;
+    margin: 0 auto;
+
+    .floor-plan-details {
+      .grid-overlay {
+        grid-template-columns: 186px 80px 133px;
+        grid-template-rows: 106px 288px 108px auto;
+        font-size: 1rem;
+      }
+    }
+  }
+}
