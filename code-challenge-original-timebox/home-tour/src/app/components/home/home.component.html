@@ -1,0 +1,150 @@
+<div *ngIf="!isSmallScreen" class="big-screen">
+  <div class="basic-details">
+    <h1> {{ propertyData.houseDetails }} <span> ({{ propertyData.housePrice | currency: 'EUR' }}) </span></h1>
+    <span><span class="italic"> Address: </span> {{ propertyData.address }}</span>
+  </div>
+
+  <div class="actions">
+    <button mat-button mat-raised-button color="accent">Save</button>
+    <button mat-button mat-raised-button color="primary">Call</button>
+  </div>
+
+  <div class="picture-details" #houseImageContainer>
+    <img #houseImage [ngSrc]="currentImageUrl" alt="House" fill (load)="adjustOverlay()">
+    <div class="click-overlay" #houseImageClickable (click)="viewFullImage()"></div>
+    <div class="navigation">
+      <button tabindex="-1" mat-fab color="primary" (click)="previousImage()">
+          <span class="material-symbols-rounded">
+            chevron_left
+          </span>
+      </button>
+      <button tabindex="-1" mat-fab color="primary" (click)="nextImage()">
+          <span class="material-symbols-rounded">
+            chevron_right
+          </span>
+      </button>
+    </div>
+  </div>
+
+  <div class="floor-plan-details" #floorImageContainer>
+    <img #floorImage [ngSrc]="currentFloorPlan" alt="Current Floor Plan" (load)="adjustFloorOverlay()" fill>
+    <div #floorImageClickable class="grid-overlay">
+      <div class="living" (click)="goTo('livingRoom')">Living Room</div>
+      <div class="kitchen" (click)="goTo('kitchen')">Kitchen</div>
+      <div class="bedroom" (click)="goTo('bedroom')">Bedroom</div>
+      <div class="bathroom" (click)="goTo('bathroom')">Bathroom</div>
+      <div class="entrance" (click)="goTo('entrance')">Entrance</div>
+      <div class="balcony" (click)="goTo('balcony')">Balcony</div>
+      <div class="outside" (click)="goTo('outside')">Outside</div>
+    </div>
+  </div>
+
+  <div class="summary-details">
+    <mat-accordion>
+      <mat-expansion-panel expanded>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Property Details
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <span>
+          Nestled in the picturesque landscape of the Netherlands, this charming one-bedroom, one-bathroom house offers a tranquil retreat for those seeking serenity and comfort.
+          Boasting a prime location, the property showcases breathtaking panoramic views of the surrounding countryside, creating an idyllic setting for relaxation and contemplation.
+          The interior exudes warmth and sophistication, featuring modern amenities seamlessly integrated with rustic charm.
+          The spacious bedroom provides a peaceful sanctuary, while the well-appointed bathroom offers luxurious comfort.
+          Step outside onto the private terrace, where you can bask in the beauty of nature or entertain guests amidst the stunning backdrop.
+          With its unparalleled blend of natural beauty and contemporary elegance, this house embodies the essence of Dutch living at its finest.
+          Don't miss the opportunity to make this extraordinary property your own and indulge in a lifestyle of unparalleled tranquility and refinement.
+        </span>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+
+  <div class="room-details">
+    <mat-accordion>
+      <mat-expansion-panel expanded>
+        <mat-expansion-panel-header>
+          <mat-panel-title *ngIf="currentRoom.name">
+            {{ currentRoom.name }} - Details
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <span *ngIf="currentRoom.description">
+          {{ currentRoom.description }}
+        </span>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+
+  <div class="contact-details">
+    <mat-accordion>
+      <mat-expansion-panel expanded hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Contact
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <span>
+          Need input fields
+        </span>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</div>
+
+<div *ngIf="isSmallScreen" class="small-screen">
+  <div class="main-picture">
+    <img [ngSrc]="currentImageUrl" (click)="viewFullImage()" alt="House" fill>
+    <div class="navigation">
+      <button tabindex="-1" mat-mini-fab color="primary" class="smaller-button" (click)="previousImage()">
+          <span class="material-symbols-rounded">
+            chevron_left
+          </span>
+      </button>
+      <button tabindex="-1" mat-mini-fab color="primary" (click)="nextImage()">
+          <span class="material-symbols-rounded">
+            chevron_right
+          </span>
+      </button>
+    </div>
+  </div>
+  <div class="floor-plan">
+    <img [ngSrc]="currentFloorPlan" alt="Floor plan" (click)="viewFloorPlan()" fill>
+  </div>
+  <div class="house-details">
+    <h1> {{ propertyData.houseDetails }} <span> ({{ propertyData.housePrice | currency: 'EUR' }}) </span></h1>
+    <span><span class="italic"> Address: </span> {{ propertyData.address }}</span>
+  </div>
+  <div class="summary-details">
+    <mat-accordion>
+      <mat-expansion-panel expanded>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Property Details
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <span>
+          Nestled in the picturesque landscape of the Netherlands, this charming one-bedroom, one-bathroom house offers a tranquil retreat for those seeking serenity and comfort.
+          Boasting a prime location, the property showcases breathtaking panoramic views of the surrounding countryside, creating an idyllic setting for relaxation and contemplation.
+          The interior exudes warmth and sophistication, featuring modern amenities seamlessly integrated with rustic charm.
+          The spacious bedroom provides a peaceful sanctuary, while the well-appointed bathroom offers luxurious comfort.
+          Step outside onto the private terrace, where you can bask in the beauty of nature or entertain guests amidst the stunning backdrop.
+          With its unparalleled blend of natural beauty and contemporary elegance, this house embodies the essence of Dutch living at its finest.
+          Don't miss the opportunity to make this extraordinary property your own and indulge in a lifestyle of unparalleled tranquility and refinement.
+        </span>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+    <mat-accordion>
+      <mat-expansion-panel expanded>
+        <mat-expansion-panel-header>
+          <mat-panel-title *ngIf="currentRoom.name">
+            {{ currentRoom.name }} - Details
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <span *ngIf="currentRoom.description">
+          {{ currentRoom.description }}
+        </span>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</div>
