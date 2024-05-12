@@ -33,22 +33,22 @@ export class MobileHomeComponent {
   private cdr = inject(ChangeDetectorRef);
 
   viewFloorPlan() {
-    const dialogRef = this.dialog.open(MobileFloorPlanComponent, {
-      maxWidth: '100vw',
-      maxHeight: '100vh',
-      width: '100%',
-      height: '100%',
-      panelClass: 'full-screen-image',
-      data: {
-        imageUrl: this.currentFloorPlan
-      }
-    });
-
-    dialogRef.afterClosed().subscribe((result: FloorPlanNavigateModel) => {
-      if (!result) {
-        return;
-      }
-      this.goTo(result.selectedRoom);
-    });
+    // const dialogRef = this.dialog.open(MobileFloorPlanComponent, {
+    //   maxWidth: '100vw',
+    //   maxHeight: '100vh',
+    //   width: '100%',
+    //   height: '100%',
+    //   panelClass: 'full-screen-image',
+    //   data: {
+    //     imageUrl: this.currentFloorPlan
+    //   }
+    // });
+    //
+    // dialogRef.afterClosed().subscribe((result: FloorPlanNavigateModel) => {
+    //   if (!result) {
+    //     return;
+    //   }
+    //   this.goTo(result.selectedRoom);
+    // });
   }
 }

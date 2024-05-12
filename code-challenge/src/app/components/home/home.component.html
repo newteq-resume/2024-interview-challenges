@@ -1,3 +1,6 @@
-<app-home-full-screen *ngIf="!isSmallScreen"></app-home-full-screen>
+<!--<app-home-full-screen *ngIf="!isSmallScreen"></app-home-full-screen>-->
 
-<app-mobile-home *ngIf="isSmallScreen"></app-mobile-home>
+<!--<app-mobile-home *ngIf="isSmallScreen"></app-mobile-home>-->
+<div>Data</div>
+<div>Data check: {{ roomNavigatorService.currentImageUrl$ | async }}</div>
+<div (click)="roomNavigatorService.goTo('bedroom')">Click me</div>
