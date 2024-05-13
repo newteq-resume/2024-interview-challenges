@@ -3,22 +3,22 @@
     <img [ngSrc]="currentImageUrl" priority (click)="roomNavigatorService.viewFullImage()" alt="Current Room" fill
          matTooltip="View Larger Image"
          matTooltipPosition="below">
-    <div class="navigation">
-      <button tabindex="-1" mat-mini-fab color="primary" class="smaller-button" (click)="roomNavigatorService.previousImage()"
-              matTooltip="View Previous Picture"
-              matTooltipPosition="above">
+    <button class="previous"
+      tabindex="-1" mat-mini-fab color="primary" (click)="roomNavigatorService.previousImage()"
+            matTooltip="View Previous Picture"
+            matTooltipPosition="above">
           <span class="material-symbols-rounded">
             chevron_left
           </span>
-      </button>
-      <button tabindex="-1" mat-mini-fab color="primary" (click)="roomNavigatorService.nextImage()"
-              matTooltip="View Next Picture"
-              matTooltipPosition="above">
+    </button>
+    <button class="next"
+      tabindex="-1" mat-mini-fab color="primary" (click)="roomNavigatorService.nextImage()"
+            matTooltip="View Next Picture"
+            matTooltipPosition="above">
           <span class="material-symbols-rounded">
             chevron_right
           </span>
-      </button>
-    </div>
+    </button>
   </div>
 </ng-container>
 
@@ -31,8 +31,11 @@
 </ng-container>
 
 <div class="house-details">
-  <h1> {{ propertyData.houseDetails }} <span> ({{ propertyData.housePrice | currency: 'EUR' }}) </span></h1>
-  <span><span class="italic"> Address: </span> {{ propertyData.address }}</span>
+  <h1> {{ propertyData.houseDetails }}
+    <span> ({{ propertyData.housePrice | currency: 'EUR' }}) </span>
+  </h1>
+  <span><span class="italic"> Address: </span>
+    {{ propertyData.address }}</span>
 </div>
 <div class="summary-details">
   <mat-accordion>

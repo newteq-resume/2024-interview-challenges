@@ -17,22 +17,22 @@
     <div class="click-overlay" #houseImageClickable (click)="roomNavigatorService.viewFullImage()"
          matTooltip="View Larger Image"
          matTooltipPosition="below"></div>
-    <div class="navigation">
-      <button tabindex="-1" mat-fab color="primary" (click)="roomNavigatorService.previousImage()"
-              matTooltip="View previous picture"
-              matTooltipPosition="above">
+    <button class="previous"
+      tabindex="-1" mat-fab color="primary" (click)="roomNavigatorService.previousImage()"
+            matTooltip="View previous picture"
+            matTooltipPosition="above">
           <span class="material-symbols-rounded">
             chevron_left
           </span>
-      </button>
-      <button tabindex="-1" mat-fab color="primary" (click)="roomNavigatorService.nextImage()"
-              matTooltip="View next picture"
-              matTooltipPosition="above">
+    </button>
+    <button class="next"
+      tabindex="-1" mat-fab color="primary" (click)="roomNavigatorService.nextImage()"
+            matTooltip="View next picture"
+            matTooltipPosition="above">
           <span class="material-symbols-rounded">
             chevron_right
           </span>
-      </button>
-    </div>
+    </button>
   </div>
 </ng-container>
 

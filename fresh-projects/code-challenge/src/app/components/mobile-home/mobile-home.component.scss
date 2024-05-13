@@ -20,13 +20,17 @@ app-mobile-home {
     position: relative;
     cursor: pointer;
 
-    .navigation {
+    .previous,.next {
       position: absolute;
       bottom: 0.5rem;
+    }
+
+    .previous {
       left: 0.5rem;
+    }
+
+    .next {
       right: 0.5rem;
-      display: flex;
-      justify-content: space-between;
     }
 
     img {
