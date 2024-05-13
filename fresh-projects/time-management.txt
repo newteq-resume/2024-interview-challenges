@@ -53,7 +53,7 @@ creating components and general refactor
     - 1h30
 Quality of life
     - 1h
-    - 
+    - 1h
 --------------------------
-Total = 3h
-Total for coding all together = 22h + 2h0 = 24h0
+Total = 4h
+Total for coding all together = 22h + 4h0 = 26h0
