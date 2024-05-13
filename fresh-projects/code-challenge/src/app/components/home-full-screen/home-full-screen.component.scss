@@ -146,6 +146,9 @@ app-home-full-screen {
 
   @media (max-width: variables.$breakpoint-md) {
     grid-template-rows: 80px minmax(400px, 1fr) max-content min-content min-content;
+    .info {
+      margin-top: 1rem;
+    }
   }
 
   @media (min-width: variables.$breakpoint-md + 1) {
