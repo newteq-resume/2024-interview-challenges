@@ -43,11 +43,6 @@ import { RoomNavigatorService } from "../../services/room-navigator.service";
 export class HomeComponent {
 
   protected isSmallScreen = false;
-  protected currentImageUrl: string = '';
-  protected currentFloorPlan: string = '';
-
-  private dialog = inject(MatDialog);
-  private cdr = inject(ChangeDetectorRef);
   protected roomNavigatorService = inject(RoomNavigatorService);
 
   constructor(private breakpointObserver: BreakpointObserver) {
@@ -60,20 +55,8 @@ export class HomeComponent {
     ]).subscribe(result => {
       this.isSmallScreen = result.breakpoints[Breakpoints.XSmall] || result.breakpoints[Breakpoints.Small];
     });
+    // first time load of application and house images
     this.roomNavigatorService.updateCurrentImage();
-  }
-
-  viewFullImage() {
-    this.dialog.open(FullScreenImageComponent, {
-      maxWidth: '100vw',
-      maxHeight: '100vh',
-      width: '100%',
-      height: '100%',
-      panelClass: 'full-screen-image',
-      data: {
-        imageUrl: this.currentImageUrl
-      }
-    });
   }
 
 }

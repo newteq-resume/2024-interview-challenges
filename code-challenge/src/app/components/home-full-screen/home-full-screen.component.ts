@@ -1,8 +1,9 @@
-import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, HostListener, inject, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Data } from "../../domain/data/data";
-import { CurrencyPipe, NgIf, NgOptimizedImage } from "@angular/common";
+import { AsyncPipe, CurrencyPipe, NgIf, NgOptimizedImage } from "@angular/common";
 import { MatAccordion, MatExpansionPanel, MatExpansionPanelHeader, MatExpansionPanelTitle } from "@angular/material/expansion";
 import { MatButton, MatFabButton } from "@angular/material/button";
+import { RoomNavigatorService } from "../../services/room-navigator.service";
 
 @Component({
   selector: 'app-home-full-screen',
@@ -16,14 +17,15 @@ import { MatButton, MatFabButton } from "@angular/material/button";
     MatExpansionPanelTitle,
     MatFabButton,
     NgIf,
-    NgOptimizedImage
+    NgOptimizedImage,
+    AsyncPipe
   ],
   templateUrl: './home-full-screen.component.html',
-  styleUrl: './home-full-screen.component.scss'
+  styleUrl: './home-full-screen.component.scss',
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeFullScreenComponent {
-
-  protected readonly propertyData = Data;
 
   @ViewChild('houseImageContainer') houseImageContainer!: ElementRef<HTMLElement>;
   @ViewChild('houseImage') houseImage!: ElementRef<HTMLImageElement>;
@@ -31,6 +33,9 @@ export class HomeFullScreenComponent {
   @ViewChild('floorImageContainer') floorImageContainer!: ElementRef<HTMLElement>;
   @ViewChild('floorImage') floorImage!: ElementRef<HTMLImageElement>;
   @ViewChild('floorImageClickable') floorImageClickable!: ElementRef<HTMLElement>;
+
+  protected readonly propertyData = Data;
+  protected roomNavigatorService = inject(RoomNavigatorService);
 
   @HostListener('window:resize', ['$event'])
   onResize(_event: any) {

@@ -1,7 +1,9 @@
 import { Data } from "../domain/data/data";
 import { BehaviorSubject } from "rxjs";
 import { Room } from "../domain/data/room";
-import { Injectable } from "@angular/core";
+import { inject, Injectable } from "@angular/core";
+import { FullScreenImageComponent } from "../components/full-screen-image/full-screen-image.component";
+import { MatDialog, MatDialogRef } from "@angular/material/dialog";
 
 @Injectable({
   providedIn: 'root'
@@ -16,10 +18,12 @@ export class RoomNavigatorService {
 
   roomIndexMax$ = new BehaviorSubject<number>(this.roomIndexMax);
   roomLoopIndex$ = new BehaviorSubject<number>(this.roomLoopIndex);
-  imageIndex$ = new BehaviorSubject(this.imageIndex);
-  currentImageUrl$ = new BehaviorSubject(this.currentImageUrl);
-  currentFloorPlan$ = new BehaviorSubject(this.currentFloorPlan);
+  imageIndex$ = new BehaviorSubject<number>(this.imageIndex);
+  currentImageUrl$ = new BehaviorSubject<string>(this.currentImageUrl);
+  currentFloorPlan$ = new BehaviorSubject<string>(this.currentFloorPlan);
+  currentRoom$ = new BehaviorSubject<Room>(Data.rooms[Data.houseImageLoop[this.roomLoopIndex]]);
 
+  private dialog = inject(MatDialog);
 
   public goTo(room: string): void {
     if (room === 'outside') {
@@ -71,8 +75,22 @@ export class RoomNavigatorService {
     this.currentImageUrl = this.currentRoom.getImageUrls()[this.imageIndex];
     this.currentFloorPlan = this.currentRoom.getFloorPlanImage();
 
+    this.currentRoom$.next(this.currentRoom);
     this.currentImageUrl$.next(this.currentImageUrl);
     this.currentFloorPlan$.next(this.currentFloorPlan);
+  }
+
+  viewFullImage(): void {
+    this.dialog.open(FullScreenImageComponent, {
+      maxWidth: '100vw',
+      maxHeight: '100vh',
+      width: '100%',
+      height: '100%',
+      panelClass: 'full-screen-image',
+      data: {
+        imageUrl: this.currentImageUrl
+      }
+    });
   }
 
   private get currentRoom(): Room {
