@@ -1,0 +1,103 @@
+<ng-container *ngIf="roomNavigatorService.currentImageUrl$ | async as currentImageUrl">
+  <div class="main-picture">
+    <img [ngSrc]="currentImageUrl" priority (click)="roomNavigatorService.viewFullImage()" alt="Current Room" fill
+         matTooltip="View Larger Image"
+         matTooltipPosition="below">
+    <button class="previous"
+      tabindex="-1" mat-mini-fab color="primary" (click)="roomNavigatorService.previousImage()"
+            matTooltip="View Previous Picture"
+            matTooltipPosition="above">
+          <span class="material-symbols-rounded">
+            chevron_left
+          </span>
+    </button>
+    <button class="next"
+      tabindex="-1" mat-mini-fab color="primary" (click)="roomNavigatorService.nextImage()"
+            matTooltip="View Next Picture"
+            matTooltipPosition="above">
+          <span class="material-symbols-rounded">
+            chevron_right
+          </span>
+    </button>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="roomNavigatorService.currentFloorPlan$ | async as currentFloorPlan">
+  <div class="floor-plan">
+    <img [ngSrc]="currentFloorPlan" alt="Floor plan of house" (click)="viewFloorPlan()" fill
+         matTooltip="View Floor Plan Navigation"
+         matTooltipPosition="below">
+  </div>
+</ng-container>
+
+<div class="house-details">
+  <h1> {{ propertyData.houseDetails }}
+    <span> ({{ propertyData.housePrice | currency: 'EUR' }}) </span>
+  </h1>
+  <span><span class="italic"> Address: </span>
+    {{ propertyData.address }}</span>
+</div>
+
+<div class="actions">
+  <button mat-button mat-raised-button color="accent" (click)="contactService.email()">
+    <span class="material-symbols-rounded">mail</span>
+    <span class="flex-center">Email</span>
+  </button>
+  <button mat-button mat-raised-button color="primary" (click)="contactService.call()">
+    <span class="material-symbols-rounded">call</span>
+    <span class="flex-center">Contact</span>
+  </button>
+</div>
+
+<div class="info">
+  <mat-chip-set aria-label="Property Details">
+    <mat-chip>
+      <span class="material-symbols-rounded">bed</span>
+      <span class="flex-center">1 Bedroom</span>
+    </mat-chip>
+    <mat-chip>
+      <span class="material-symbols-rounded">bathtub</span>
+      <span class="flex-center">1 Bathroom</span>
+    </mat-chip>
+    <mat-chip>
+      <span class="material-symbols-rounded">garage</span>
+      <span class="flex-center">2 Designated Parking</span>
+    </mat-chip>
+  </mat-chip-set>
+</div>
+
+<div class="summary-details">
+  <mat-accordion>
+    <mat-expansion-panel expanded>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Property Details
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <span>
+          Nestled in the picturesque landscape of the Netherlands, this charming one-bedroom, one-bathroom house offers a tranquil retreat for those seeking serenity and comfort.
+          Boasting a prime location, the property showcases breathtaking panoramic views of the surrounding countryside, creating an idyllic setting for relaxation and contemplation.
+          The interior exudes warmth and sophistication, featuring modern amenities seamlessly integrated with rustic charm.
+          The spacious bedroom provides a peaceful sanctuary, while the well-appointed bathroom offers luxurious comfort.
+          Step outside onto the private terrace, where you can bask in the beauty of nature or entertain guests amidst the stunning backdrop.
+          With its unparalleled blend of natural beauty and contemporary elegance, this house embodies the essence of Dutch living at its finest.
+          Don't miss the opportunity to make this extraordinary property your own and indulge in a lifestyle of unparalleled tranquility and refinement.
+        </span>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+  <ng-container *ngIf="roomNavigatorService.currentRoom$ | async as currentRoom">
+    <mat-accordion>
+      <mat-expansion-panel expanded>
+        <mat-expansion-panel-header>
+          <mat-panel-title *ngIf="currentRoom.name">
+            {{ currentRoom.name }} - Details
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <span *ngIf="currentRoom.description">
+          {{ currentRoom.description }}
+        </span>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </ng-container>
+</div>

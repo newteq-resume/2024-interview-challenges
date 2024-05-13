@@ -1,0 +1,52 @@
+<div class="image-container">
+  <img [ngSrc]="data.imageUrl" alt="Floor plan of house" fill>
+  <div class="grid-overlay">
+    <div class="living" (click)="goTo('livingRoom')"
+         matTooltip="View Living Room"
+         matTooltipPosition="left">
+      Living Room
+    </div>
+    <div class="kitchen" (click)="goTo('kitchen')"
+         matTooltip="View Kitchen"
+         matTooltipPosition="above">
+      Kitchen
+    </div>
+    <div class="bedroom" (click)="goTo('bedroom')"
+         matTooltip="View Bedroom"
+         matTooltipPosition="right">
+      Bedroom
+    </div>
+    <div class="bathroom" (click)="goTo('bathroom')"
+         matTooltip="View Bathroom"
+         matTooltipPosition="above">
+      Bathroom
+    </div>
+    <div class="entrance" (click)="goTo('entrance')"
+         matTooltip="View Entrance Hall"
+         matTooltipPosition="above">
+      Entrance
+    </div>
+    <div class="balcony" (click)="goTo('balcony')"
+         matTooltip="View Balcony"
+         matTooltipPosition="below">
+      Balcony
+    </div>
+  </div>
+</div>
+
+<div class="actions">
+  <button tabindex="-1" mat-fab color="primary" (click)="goTo('outside')"
+          matTooltip="View Outside"
+          matTooltipPosition="right">
+    <span class="material-symbols-rounded">
+      home_pin
+    </span>
+  </button>
+  <button tabindex="-1" mat-fab color="accent" (click)="dialogRef.close()"
+          matTooltip="Return/Close"
+          matTooltipPosition="left">
+    <span class="material-symbols-rounded">
+      close
+    </span>
+  </button>
+</div>

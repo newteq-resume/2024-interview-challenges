@@ -1,0 +1,12 @@
+app-full-screen-image {
+  .actions {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 10;
+  }
+
+  img {
+    object-fit: contain;
+  }
+}

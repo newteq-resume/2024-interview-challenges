@@ -1,0 +1,67 @@
+app-mobile-home {
+  .floor-plan {
+    height: 150px;
+    width: 117px;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 10;
+    cursor: pointer;
+
+    background: rgba(0, 0, 0, 0.75);
+
+    img {
+      object-fit: contain;
+    }
+  }
+
+  .main-picture {
+    height: 50vh;
+    position: relative;
+    cursor: pointer;
+
+    .previous,.next {
+      position: absolute;
+      bottom: 0.5rem;
+    }
+
+    .previous {
+      left: 0.5rem;
+    }
+
+    .next {
+      right: 0.5rem;
+    }
+
+    img {
+      object-fit: cover;
+    }
+  }
+
+  .house-details {
+    margin: 1rem;
+  }
+
+  .actions {
+    display: flex;
+    justify-content: start;
+    margin: 1rem;
+
+    gap: 1rem;
+  }
+
+  .summary-details {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    margin: 1rem;
+  }
+
+  .info {
+    margin-bottom: 1rem;
+    margin-left: 1rem;
+    display: flex;
+    justify-content: start;
+  }
+}
