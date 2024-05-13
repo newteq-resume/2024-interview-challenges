@@ -4,6 +4,7 @@ import { AsyncPipe, CurrencyPipe, NgIf, NgOptimizedImage } from "@angular/common
 import { MatAccordion, MatExpansionPanel, MatExpansionPanelHeader, MatExpansionPanelTitle } from "@angular/material/expansion";
 import { MatButton, MatFabButton } from "@angular/material/button";
 import { RoomNavigatorService } from "../../services/room-navigator.service";
+import { MatTooltip } from "@angular/material/tooltip";
 
 @Component({
   selector: 'app-home-full-screen',
@@ -18,7 +19,8 @@ import { RoomNavigatorService } from "../../services/room-navigator.service";
     MatFabButton,
     NgIf,
     NgOptimizedImage,
-    AsyncPipe
+    AsyncPipe,
+    MatTooltip
   ],
   templateUrl: './home-full-screen.component.html',
   styleUrl: './home-full-screen.component.scss',

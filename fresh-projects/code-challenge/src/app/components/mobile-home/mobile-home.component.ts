@@ -7,21 +7,23 @@ import { MobileFloorPlanComponent } from "../mobile-floor-plan/mobile-floor-plan
 import { FloorPlanNavigateModel } from "../../domain/modals/floor-plan-navigate.model";
 import { MatDialog } from "@angular/material/dialog";
 import { RoomNavigatorService } from "../../services/room-navigator.service";
+import { MatTooltip } from "@angular/material/tooltip";
 
 @Component({
   selector: 'app-mobile-home',
   standalone: true,
-  imports: [
-    CurrencyPipe,
-    MatAccordion,
-    MatExpansionPanel,
-    MatExpansionPanelHeader,
-    MatExpansionPanelTitle,
-    MatMiniFabButton,
-    NgIf,
-    NgOptimizedImage,
-    AsyncPipe
-  ],
+    imports: [
+        CurrencyPipe,
+        MatAccordion,
+        MatExpansionPanel,
+        MatExpansionPanelHeader,
+        MatExpansionPanelTitle,
+        MatMiniFabButton,
+        NgIf,
+        NgOptimizedImage,
+        AsyncPipe,
+        MatTooltip
+    ],
   templateUrl: './mobile-home.component.html',
   styleUrl: './mobile-home.component.scss',
   encapsulation: ViewEncapsulation.None,

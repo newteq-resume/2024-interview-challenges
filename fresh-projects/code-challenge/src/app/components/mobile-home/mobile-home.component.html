@@ -1,13 +1,19 @@
 <ng-container *ngIf="roomNavigatorService.currentImageUrl$ | async as currentImageUrl">
   <div class="main-picture">
-    <img [ngSrc]="currentImageUrl" priority (click)="roomNavigatorService.viewFullImage()" alt="Current Room" fill>
+    <img [ngSrc]="currentImageUrl" priority (click)="roomNavigatorService.viewFullImage()" alt="Current Room" fill
+         matTooltip="View Larger Image"
+         matTooltipPosition="below">
     <div class="navigation">
-      <button tabindex="-1" mat-mini-fab color="primary" class="smaller-button" (click)="roomNavigatorService.previousImage()">
+      <button tabindex="-1" mat-mini-fab color="primary" class="smaller-button" (click)="roomNavigatorService.previousImage()"
+              matTooltip="View Previous Picture"
+              matTooltipPosition="above">
           <span class="material-symbols-rounded">
             chevron_left
           </span>
       </button>
-      <button tabindex="-1" mat-mini-fab color="primary" (click)="roomNavigatorService.nextImage()">
+      <button tabindex="-1" mat-mini-fab color="primary" (click)="roomNavigatorService.nextImage()"
+              matTooltip="View Next Picture"
+              matTooltipPosition="above">
           <span class="material-symbols-rounded">
             chevron_right
           </span>
@@ -18,7 +24,9 @@
 
 <ng-container *ngIf="roomNavigatorService.currentFloorPlan$ | async as currentFloorPlan">
   <div class="floor-plan">
-    <img [ngSrc]="currentFloorPlan" alt="Floor plan of house" (click)="viewFloorPlan()" fill>
+    <img [ngSrc]="currentFloorPlan" alt="Floor plan of house" (click)="viewFloorPlan()" fill
+         matTooltip="View Floor Plan Navigation"
+         matTooltipPosition="below">
   </div>
 </ng-container>
 

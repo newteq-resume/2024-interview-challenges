@@ -6,6 +6,7 @@ app-mobile-home {
     top: 1rem;
     right: 1rem;
     z-index: 10;
+    cursor: pointer;
 
     background: rgba(0, 0, 0, 0.75);
 
@@ -17,6 +18,7 @@ app-mobile-home {
   .main-picture {
     height: 50vh;
     position: relative;
+    cursor: pointer;
 
     .navigation {
       position: absolute;

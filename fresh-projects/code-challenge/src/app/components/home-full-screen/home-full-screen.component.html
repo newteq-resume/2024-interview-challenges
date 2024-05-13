@@ -1,6 +1,9 @@
 <div class="basic-details">
-  <h1> {{ propertyData.houseDetails }} <span> ({{ propertyData.housePrice | currency: 'EUR' }}) </span></h1>
-  <span><span class="italic"> Address: </span> {{ propertyData.address }}</span>
+  <h1> {{ propertyData.houseDetails }}
+    <span> ({{ propertyData.housePrice | currency: 'EUR' }}) </span>
+  </h1>
+  <span><span class="italic"> Address: </span>
+    {{ propertyData.address }}</span>
 </div>
 
 <div class="actions">
@@ -11,14 +14,20 @@
 <ng-container *ngIf="roomNavigatorService.currentImageUrl$ | async as currentImageUrl">
   <div class="picture-details" #houseImageContainer>
     <img #houseImage [ngSrc]="currentImageUrl" priority alt="Current Room" fill (load)="adjustOverlay()">
-    <div class="click-overlay" #houseImageClickable (click)="roomNavigatorService.viewFullImage()"></div>
+    <div class="click-overlay" #houseImageClickable (click)="roomNavigatorService.viewFullImage()"
+         matTooltip="View Larger Image"
+         matTooltipPosition="below"></div>
     <div class="navigation">
-      <button tabindex="-1" mat-fab color="primary" (click)="roomNavigatorService.previousImage()">
+      <button tabindex="-1" mat-fab color="primary" (click)="roomNavigatorService.previousImage()"
+              matTooltip="View previous picture"
+              matTooltipPosition="above">
           <span class="material-symbols-rounded">
             chevron_left
           </span>
       </button>
-      <button tabindex="-1" mat-fab color="primary" (click)="roomNavigatorService.nextImage()">
+      <button tabindex="-1" mat-fab color="primary" (click)="roomNavigatorService.nextImage()"
+              matTooltip="View next picture"
+              matTooltipPosition="above">
           <span class="material-symbols-rounded">
             chevron_right
           </span>
@@ -31,13 +40,41 @@
   <div class="floor-plan-details" #floorImageContainer>
     <img #floorImage [ngSrc]="currentFloorPlan" alt="Current Floor Plan" (load)="adjustFloorOverlay()" fill>
     <div #floorImageClickable class="grid-overlay">
-      <div class="living" (click)="roomNavigatorService.goTo('livingRoom')">Living Room</div>
-      <div class="kitchen" (click)="roomNavigatorService.goTo('kitchen')">Kitchen</div>
-      <div class="bedroom" (click)="roomNavigatorService.goTo('bedroom')">Bedroom</div>
-      <div class="bathroom" (click)="roomNavigatorService.goTo('bathroom')">Bathroom</div>
-      <div class="entrance" (click)="roomNavigatorService.goTo('entrance')">Entrance</div>
-      <div class="balcony" (click)="roomNavigatorService.goTo('balcony')">Balcony</div>
-      <div class="outside" (click)="roomNavigatorService.goTo('outside')">Outside</div>
+      <div class="living" (click)="roomNavigatorService.goTo('livingRoom')"
+           matTooltip="View Living Room"
+           matTooltipPosition="left">
+        Living Room
+      </div>
+      <div class="kitchen" (click)="roomNavigatorService.goTo('kitchen')"
+           matTooltip="View Kitchen"
+           matTooltipPosition="above">
+        Kitchen
+      </div>
+      <div class="bedroom" (click)="roomNavigatorService.goTo('bedroom')"
+           matTooltip="View Bedroom"
+           matTooltipPosition="right">
+        Bedroom
+      </div>
+      <div class="bathroom" (click)="roomNavigatorService.goTo('bathroom')"
+           matTooltip="View Bathroom"
+           matTooltipPosition="above">
+        Bathroom
+      </div>
+      <div class="entrance" (click)="roomNavigatorService.goTo('entrance')"
+           matTooltip="View Entrance Hall"
+           matTooltipPosition="above">
+        Entrance
+      </div>
+      <div class="balcony" (click)="roomNavigatorService.goTo('balcony')"
+           matTooltip="View Balcony"
+           matTooltipPosition="below">
+        Balcony
+      </div>
+      <div class="outside" (click)="roomNavigatorService.goTo('outside')"
+           matTooltip="View Outside"
+           matTooltipPosition="below">
+        Outside
+      </div>
     </div>
   </div>
 </ng-container>
