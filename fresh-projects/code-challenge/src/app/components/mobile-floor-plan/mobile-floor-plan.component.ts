@@ -3,13 +3,15 @@ import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { NgOptimizedImage } from "@angular/common";
 import { MatFabButton } from "@angular/material/button";
 import { FullScreenImageModel } from "../../domain/modals/full-screen-image.model";
+import { MatTooltip } from "@angular/material/tooltip";
 
 @Component({
   selector: 'app-mobile-floor-plan',
   standalone: true,
   imports: [
     NgOptimizedImage,
-    MatFabButton
+    MatFabButton,
+    MatTooltip
   ],
   templateUrl: './mobile-floor-plan.component.html',
   styleUrl: './mobile-floor-plan.component.scss',
