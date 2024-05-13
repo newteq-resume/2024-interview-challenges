@@ -9,6 +9,7 @@ import { MatDialog } from "@angular/material/dialog";
 import { RoomNavigatorService } from "../../services/room-navigator.service";
 import { MatTooltip } from "@angular/material/tooltip";
 import { MatChip, MatChipSet } from "@angular/material/chips";
+import { ContactService } from "../../services/contact.service";
 
 @Component({
   selector: 'app-mobile-home',
@@ -37,6 +38,7 @@ export class MobileHomeComponent {
 
   protected readonly propertyData = Data;
   protected roomNavigatorService = inject(RoomNavigatorService);
+  protected contactService = inject(ContactService);
 
   private dialog = inject(MatDialog);
   private currentFloorPlan: string = '';

@@ -6,6 +6,7 @@ import { MatButton, MatFabButton } from "@angular/material/button";
 import { RoomNavigatorService } from "../../services/room-navigator.service";
 import { MatTooltip } from "@angular/material/tooltip";
 import { MatChip, MatChipSet } from "@angular/material/chips";
+import { ContactService } from "../../services/contact.service";
 
 @Component({
   selector: 'app-home-full-screen',
@@ -41,6 +42,7 @@ export class HomeFullScreenComponent {
 
   protected readonly propertyData = Data;
   protected roomNavigatorService = inject(RoomNavigatorService);
+  protected contactService = inject(ContactService);
 
   @HostListener('window:resize', ['$event'])
   onResize(_event: any) {

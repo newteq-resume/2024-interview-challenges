@@ -7,11 +7,11 @@
 </div>
 
 <div class="actions">
-  <button mat-button mat-raised-button color="accent">
+  <button mat-button mat-raised-button color="accent" (click)="contactService.email()">
     <span class="material-symbols-rounded">mail</span>
     <span class="flex-center">Email</span>
   </button>
-  <button mat-button mat-raised-button color="primary">
+  <button mat-button mat-raised-button color="primary" (click)="contactService.call()">
     <span class="material-symbols-rounded">call</span>
     <span class="flex-center">Contact</span>
   </button>
