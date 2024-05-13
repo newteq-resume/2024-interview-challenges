@@ -10,7 +10,7 @@
 
 <ng-container *ngIf="roomNavigatorService.currentImageUrl$ | async as currentImageUrl">
   <div class="picture-details" #houseImageContainer>
-    <img #houseImage [ngSrc]="currentImageUrl" alt="House" fill (load)="adjustOverlay()">
+    <img #houseImage [ngSrc]="currentImageUrl" priority alt="Current Room" fill (load)="adjustOverlay()">
     <div class="click-overlay" #houseImageClickable (click)="roomNavigatorService.viewFullImage()"></div>
     <div class="navigation">
       <button tabindex="-1" mat-fab color="primary" (click)="roomNavigatorService.previousImage()">
