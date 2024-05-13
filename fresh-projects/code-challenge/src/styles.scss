@@ -20,7 +20,7 @@ body {
 }
 
 // fix placement of text and icons in buttons
-.mdc-button__label {
+.mdc-button__label,.mat-mdc-chip-action-label {
   display: flex;
   justify-content: center;
 }

@@ -18,7 +18,7 @@
          matTooltip="View Larger Image"
          matTooltipPosition="below"></div>
     <button class="previous"
-      tabindex="-1" mat-fab color="primary" (click)="roomNavigatorService.previousImage()"
+            tabindex="-1" mat-fab color="primary" (click)="roomNavigatorService.previousImage()"
             matTooltip="View previous picture"
             matTooltipPosition="above">
           <span class="material-symbols-rounded">
@@ -26,7 +26,7 @@
           </span>
     </button>
     <button class="next"
-      tabindex="-1" mat-fab color="primary" (click)="roomNavigatorService.nextImage()"
+            tabindex="-1" mat-fab color="primary" (click)="roomNavigatorService.nextImage()"
             matTooltip="View next picture"
             matTooltipPosition="above">
           <span class="material-symbols-rounded">
@@ -79,6 +79,23 @@
   </div>
 </ng-container>
 
+<div class="info">
+  <mat-chip-set aria-label="Fish selection">
+    <mat-chip>
+      <span class="material-symbols-rounded">bed</span>
+      <span class="details">1 Bedroom</span>
+    </mat-chip>
+    <mat-chip>
+      <span class="material-symbols-rounded">bathtub</span>
+      <span class="details">1 Bathroom</span>
+    </mat-chip>
+    <mat-chip>
+      <span class="material-symbols-rounded">garage</span>
+      <span class="details">2 Designated Parking</span>
+    </mat-chip>
+  </mat-chip-set>
+</div>
+
 <div class="summary-details">
   <mat-accordion>
     <mat-expansion-panel expanded>
@@ -116,18 +133,3 @@
     </mat-accordion>
   </div>
 </ng-container>
-
-<div class="contact-details">
-  <mat-accordion>
-    <mat-expansion-panel expanded hideToggle>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Contact
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <span>
-          Need input fields
-        </span>
-    </mat-expansion-panel>
-  </mat-accordion>
-</div>

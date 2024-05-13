@@ -5,6 +5,7 @@ import { MatAccordion, MatExpansionPanel, MatExpansionPanelHeader, MatExpansionP
 import { MatButton, MatFabButton } from "@angular/material/button";
 import { RoomNavigatorService } from "../../services/room-navigator.service";
 import { MatTooltip } from "@angular/material/tooltip";
+import { MatChip, MatChipSet } from "@angular/material/chips";
 
 @Component({
   selector: 'app-home-full-screen',
@@ -20,7 +21,9 @@ import { MatTooltip } from "@angular/material/tooltip";
     NgIf,
     NgOptimizedImage,
     AsyncPipe,
-    MatTooltip
+    MatTooltip,
+    MatChipSet,
+    MatChip
   ],
   templateUrl: './home-full-screen.component.html',
   styleUrl: './home-full-screen.component.scss',

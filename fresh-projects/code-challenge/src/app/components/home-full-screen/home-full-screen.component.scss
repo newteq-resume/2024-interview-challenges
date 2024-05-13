@@ -5,10 +5,21 @@ app-home-full-screen {
   grid-template-areas:
       'details actions'
       'picture floorplan'
-      'summary room'
-      'summary contact';
+      'info info'
+      'summary summary'
+      'room room';
   grid-template-columns: 2fr 1fr;
-  grid-template-rows: 100px minmax(600px, 1fr) min-content;
+  grid-template-rows: 100px minmax(600px, 1fr) max-content min-content min-content;
+
+  .info {
+    grid-area: info;
+
+    .details {
+      display: flex;
+      align-self: center;
+      margin-left: 0.5rem;
+    }
+  }
 
   .basic-details {
     grid-area: details;
@@ -125,29 +136,16 @@ app-home-full-screen {
 
   .summary-details {
     grid-area: summary;
-
     margin-top: 2rem;
   }
 
   .room-details {
     grid-area: room;
     margin-top: 2rem;
-    margin-left: 1rem;
-  }
-
-  .contact-details {
-    grid-area: contact;
-
-    margin-top: 2rem;
-    margin-left: 1rem;
   }
 
   @media (max-width: variables.$breakpoint-md) {
-    grid-template-rows: 80px minmax(400px, 1fr) min-content;
-
-    .contact-details {
-      margin-left: 1rem;
-    }
+    grid-template-rows: 80px minmax(400px, 1fr) max-content min-content min-content;
   }
 
   @media (min-width: variables.$breakpoint-md + 1) {
