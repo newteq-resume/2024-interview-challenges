@@ -50,8 +50,8 @@ Code improvements
 
 creating components and general refactor
     - 30m
-    - 1h15
+    - 1h30
 
 --------------------------
-Total = 1h45
-Total for coding all together = 22h + 1h45 = 23h45
+Total = 2h
+Total for coding all together = 22h + 2h0 = 24h0
