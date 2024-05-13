@@ -57,14 +57,17 @@ app-home-full-screen {
     position: relative;
 
     .grid-overlay {
+      margin-left: 12px;
+      margin-top: 12px;
+
       display: grid;
       grid-template-areas:
           'balcony living living'
           'bedroom living living'
           'bathroom entrance kitchen'
           'outside outside outside';
-      grid-template-columns: 136px 59px 99px;
-      grid-template-rows: 78px 213px 81px auto;
+      grid-template-columns: 124px 59px 99px;
+      grid-template-rows: 66px 213px 81px auto;
       position: absolute;
       left: 51%;
       top: 50%;
@@ -147,8 +150,11 @@ app-home-full-screen {
 
     .floor-plan-details {
       .grid-overlay {
-        grid-template-columns: 186px 80px 133px;
-        grid-template-rows: 106px 288px 108px auto;
+        margin-top: 16px;
+        margin-left: 17px;
+
+        grid-template-columns: 169px 79px 133px;
+        grid-template-rows: 90px 287px 112px 52px;
         font-size: 1rem;
       }
     }

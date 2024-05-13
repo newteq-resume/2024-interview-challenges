@@ -18,13 +18,12 @@ app-mobile-floor-plan {
       grid-template-areas:
           'balcony living living'
           'bedroom living living'
-          'bathroom entrance kitchen'
-          'outside outside outside';
+          'bathroom entrance kitchen';
       position: absolute;
       height: 500px;
       width: 395px;
       grid-template-columns: 164px 75px 122px;
-      grid-template-rows: 98px 267px 103px 100px;
+      grid-template-rows: 98px 267px 103px;
       left: 50%;
       top: 50%;
       transform: translate(-50%, -50%);
