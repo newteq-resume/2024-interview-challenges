@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, inject, ViewEncapsulation } from '@
 import { Data } from "../../domain/data/data";
 import { AsyncPipe, CurrencyPipe, NgIf, NgOptimizedImage } from "@angular/common";
 import { MatAccordion, MatExpansionPanel, MatExpansionPanelHeader, MatExpansionPanelTitle } from "@angular/material/expansion";
-import { MatMiniFabButton } from "@angular/material/button";
+import { MatButton, MatMiniFabButton } from "@angular/material/button";
 import { MobileFloorPlanComponent } from "../mobile-floor-plan/mobile-floor-plan.component";
 import { FloorPlanNavigateModel } from "../../domain/modals/floor-plan-navigate.model";
 import { MatDialog } from "@angular/material/dialog";
@@ -25,7 +25,8 @@ import { MatChip, MatChipSet } from "@angular/material/chips";
     AsyncPipe,
     MatTooltip,
     MatChip,
-    MatChipSet
+    MatChipSet,
+    MatButton
   ],
   templateUrl: './mobile-home.component.html',
   styleUrl: './mobile-home.component.scss',

@@ -7,8 +7,14 @@
 </div>
 
 <div class="actions">
-  <button mat-button mat-raised-button color="accent">Save</button>
-  <button mat-button mat-raised-button color="primary">Call</button>
+  <button mat-button mat-raised-button color="accent">
+    <span class="material-symbols-rounded">mail</span>
+    <span class="flex-center">Email</span>
+  </button>
+  <button mat-button mat-raised-button color="primary">
+    <span class="material-symbols-rounded">call</span>
+    <span class="flex-center">Contact</span>
+  </button>
 </div>
 
 <ng-container *ngIf="roomNavigatorService.currentImageUrl$ | async as currentImageUrl">
@@ -83,15 +89,15 @@
   <mat-chip-set aria-label="Property Details">
     <mat-chip>
       <span class="material-symbols-rounded">bed</span>
-      <span class="details">1 Bedroom</span>
+      <span class="flex-center">1 Bedroom</span>
     </mat-chip>
     <mat-chip>
       <span class="material-symbols-rounded">bathtub</span>
-      <span class="details">1 Bathroom</span>
+      <span class="flex-center">1 Bathroom</span>
     </mat-chip>
     <mat-chip>
       <span class="material-symbols-rounded">garage</span>
-      <span class="details">2 Designated Parking</span>
+      <span class="flex-center">2 Designated Parking</span>
     </mat-chip>
   </mat-chip-set>
 </div>

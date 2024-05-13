@@ -25,6 +25,12 @@ body {
   justify-content: center;
 }
 
+.flex-center {
+  display: flex;
+  align-self: center;
+  margin-left: 0.5rem;
+}
+
 .italic {
   font-style: italic;
 }
