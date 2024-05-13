@@ -46,6 +46,12 @@ export class HomeComponent {
   private cdr = inject(ChangeDetectorRef);
 
   constructor(private breakpointObserver: BreakpointObserver) {
+    this.watchForScreenChanges();
+    // first time load of application and house images
+    this.roomNavigatorService.updateCurrentImage();
+  }
+
+  private watchForScreenChanges(): void {
     this.breakpointObserver.observe([
       Breakpoints.XSmall,
       Breakpoints.Small,
@@ -59,8 +65,6 @@ export class HomeComponent {
         this.cdr.detectChanges();
       }
     });
-    // first time load of application and house images
-    this.roomNavigatorService.updateCurrentImage();
   }
 
 }
