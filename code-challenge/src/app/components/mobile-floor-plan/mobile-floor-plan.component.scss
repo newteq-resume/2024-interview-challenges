@@ -13,16 +13,18 @@ app-mobile-floor-plan {
     }
 
     .grid-overlay {
+      margin-left: 11px;
       display: grid;
       grid-template-areas:
           'balcony living living'
           'bedroom living living'
-          'bathroom entrance kitchen';
+          'bathroom entrance kitchen'
+          'outside outside outside';
       position: absolute;
       height: 500px;
       width: 395px;
-      grid-template-columns: 176px 75px 122px;
-      grid-template-rows: 98px 267px 103px;
+      grid-template-columns: 164px 75px 122px;
+      grid-template-rows: 98px 267px 103px 100px;
       left: 50%;
       top: 50%;
       transform: translate(-50%, -50%);
@@ -46,12 +48,8 @@ app-mobile-floor-plan {
     .entrance {
       grid-area: entrance;
     }
-    .outside {
-      grid-area: outside;
-      margin-top: 0.5rem;
-    }
 
-    .living,.kitchen,.bathroom,.balcony,.bedroom,.entrance,.outside {
+    .living,.kitchen,.bathroom,.balcony,.bedroom,.entrance {
       display: grid;
       place-items: center;
       cursor: pointer;
