@@ -45,6 +45,8 @@ export class HomeComponent {
   protected isSmallScreen = false;
   protected roomNavigatorService = inject(RoomNavigatorService);
 
+  private cdr = inject(ChangeDetectorRef);
+
   constructor(private breakpointObserver: BreakpointObserver) {
     this.breakpointObserver.observe([
       Breakpoints.XSmall,
@@ -53,7 +55,11 @@ export class HomeComponent {
       Breakpoints.Large,
       Breakpoints.XLarge
     ]).subscribe(result => {
+      const smallScreenBefore = this.isSmallScreen;
       this.isSmallScreen = result.breakpoints[Breakpoints.XSmall] || result.breakpoints[Breakpoints.Small];
+      if (smallScreenBefore !== this.isSmallScreen) {
+        this.cdr.detectChanges();
+      }
     });
     // first time load of application and house images
     this.roomNavigatorService.updateCurrentImage();
