@@ -5,7 +5,7 @@ export class Room {
   name: string = '';
   description: string = '';
 
-  private floorPlanImage: string = '';
+  private readonly floorPlanImage: string = '';
   private images: string[] = [];
 
   getImageUrls(): string[] {

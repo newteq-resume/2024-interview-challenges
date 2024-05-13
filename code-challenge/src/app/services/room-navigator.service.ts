@@ -3,7 +3,7 @@ import { BehaviorSubject } from "rxjs";
 import { Room } from "../domain/data/room";
 import { inject, Injectable } from "@angular/core";
 import { FullScreenImageComponent } from "../components/full-screen-image/full-screen-image.component";
-import { MatDialog, MatDialogRef } from "@angular/material/dialog";
+import { MatDialog } from "@angular/material/dialog";
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +16,6 @@ export class RoomNavigatorService {
   private currentImageUrl: string = '';
   private currentFloorPlan: string = '';
 
-  roomIndexMax$ = new BehaviorSubject<number>(this.roomIndexMax);
   roomLoopIndex$ = new BehaviorSubject<number>(this.roomLoopIndex);
   imageIndex$ = new BehaviorSubject<number>(this.imageIndex);
   currentImageUrl$ = new BehaviorSubject<string>(this.currentImageUrl);

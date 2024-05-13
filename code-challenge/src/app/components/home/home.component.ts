@@ -4,8 +4,6 @@ import { MatIcon } from "@angular/material/icon";
 import { AsyncPipe, CurrencyPipe, NgForOf, NgIf, NgOptimizedImage, NgStyle } from "@angular/common";
 import { MatChip, MatChipSet } from "@angular/material/chips";
 import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
-import { FullScreenImageComponent } from "../full-screen-image/full-screen-image.component";
-import { MatDialog } from "@angular/material/dialog";
 import { MatAccordion, MatExpansionPanel, MatExpansionPanelDescription, MatExpansionPanelHeader, MatExpansionPanelTitle } from "@angular/material/expansion";
 import { MobileHomeComponent } from "../mobile-home/mobile-home.component";
 import { HomeFullScreenComponent } from "../home-full-screen/home-full-screen.component";
