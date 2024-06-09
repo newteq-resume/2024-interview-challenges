@@ -1,0 +1,6 @@
+neither
+decimal
+
+binary
+decimal
+neither
