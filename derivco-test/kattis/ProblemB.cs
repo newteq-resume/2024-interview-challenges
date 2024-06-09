@@ -18,17 +18,22 @@ namespace kattis
             var grid = new char[rows, cols];
 
             var lines = new List<string>();
-            for(var i = 0; i < rows; i++)
+            for (var i = 0; i < rows; i++)
             {
                 lines.Add(Console.ReadLine());
             }
 
             var currentRow = 0;
             var currentCol = 0;
+            Tuple<int, int> startingPos = null;
             foreach (var line in lines)
             {
                 foreach (var item in line)
                 {
+                    if (item == 'S')
+                    {
+                        startingPos = new(currentRow, currentCol);
+                    }
                     grid[currentRow, currentCol] = item;
                     currentCol++;
                 }
@@ -36,14 +41,12 @@ namespace kattis
                 currentCol = 0;
             }
 
-            for (var i = 0; i < rows; i++)
+            if (startingPos == null)
             {
-                for (var j = 0; j < cols; j++)
-                {
-                    Console.Write(grid[i, j] + " ");
-                }
-                Console.WriteLine();
+                return;
             }
+
+            Console.WriteLine($"{startingPos.Item1}, {startingPos.Item2}");
         }
     }
 }
