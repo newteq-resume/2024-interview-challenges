@@ -40,37 +40,6 @@ namespace kattis
                     Console.WriteLine("does not matter");
                 }
             }
-
         }
-        // Problem A - FIRST TRY simple test
-        //var testCases = 3;
-        //var tests = new List<string>();
-        //tests.Add("0 100 70");
-        //tests.Add("100 130 30");
-        //tests.Add("-100 -70 40");
-
-        //foreach (var test in tests)
-        //{
-        //    var items = test.Split(' ');
-        //    var r = Convert.ToInt32(items[0]);
-        //    var e = Convert.ToInt32(items[1]);
-        //    var c = Convert.ToInt32(items[2]);
-
-        //    var noAd = r;
-        //    var ad = e - c;
-
-        //    if (noAd > ad)
-        //    {
-        //        Console.WriteLine("do not advertise");
-        //    }
-        //    else if (ad > noAd)
-        //    {
-        //        Console.WriteLine("advertise");
-        //    }
-        //    else
-        //    {
-        //        Console.WriteLine("does not matter");
-        //    }
-        //}
     }
 }
