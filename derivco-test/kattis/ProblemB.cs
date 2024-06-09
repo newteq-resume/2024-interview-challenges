@@ -118,7 +118,7 @@ namespace kattis
                             Moves = nextMove
                         });
 
-                        visited[nextY, nextX] = true;
+                        visited[nextX, nextY] = true;
                     }
                 }
             }
