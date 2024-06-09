@@ -47,32 +47,52 @@ namespace kattis
                 return;
             }
 
-            int[] rowMovement = { -1, 0, 1, 0 }; // clockwise, up, right, down, left
-            int[] colMovement = { 0, 1, 0, -1 }; // clockwise, up, right, down, left
+            if (IsBorder(startingPos.Item1, startingPos.Item2, rows, cols))
+            {
+                // already at border, so out already
+                Console.WriteLine("0");
+                return;
+            }
+
+            var a = CanReachEnd(grid, (startingPos.Item1, startingPos.Item2), maxNumberOfMoves);
+            if (!a.Item1)
+                Console.WriteLine("NOT POSSIBLE");
+            else
+                Console.WriteLine(a.Item2);
         }
 
         // https://www.geeksforgeeks.org/breadth-first-traversal-bfs-on-a-2d-array/
-        public void BFS(char[,] grid, (int, int) startingPos)
+        public (bool, int) CanReachEnd(char[,] grid, (int x, int y) startingPos, int maxMoves)
         {
-            var directions = new (int, int)[]
+            var directions = new (char, int, int)[]
             {
-                (-1, 0), // up - row above, col same
-                (1, 0),  // down - row below, col same
-                (0, -1), // left - left col, row same
-                (0, 1)   // right - right col, row same
+                ('D', -1, 0), // up - row above, col same
+                ('U', 1, 0),  // down - row below, col same
+                ('R', 0, -1), // left - left col, row same
+                ('L', 0, 1)   // right - right col, row same
             };
+            //var directionAllowedMap = new Dictionary<char, (int, int)>();
+            //directionAllowedMap.Add('U', directions[1]);
+            //directionAllowedMap.Add('L', directions[3]);
+            //directionAllowedMap.Add('D', directions[0]);
+            //directionAllowedMap.Add('R', directions[2]);
 
             var maxRows = grid.GetLength(0);
             var maxCols = grid.GetLength(1);
 
             var visited = new bool[maxRows, maxCols];
-            
+
             // Stores indices of the matrix cells
-            var queue = new Queue<((int, int) pos, int moves)>();
+            var queue = new Queue<QueueMovement>();
 
             // Mark the starting cell as visited and push it into the queue
-            queue.Enqueue((startingPos, 0));
-            visited[startingPos.Item1, startingPos.Item2] = true;
+            queue.Enqueue(new QueueMovement
+            {
+                XPos = startingPos.x,
+                YPos = startingPos.y,
+                Moves = 0
+            });
+            visited[startingPos.x, startingPos.y] = true;
 
             // Iterate while the queue is not empty
             while (queue.Count != 0)
@@ -80,29 +100,56 @@ namespace kattis
                 var queueItem = queue.Dequeue();
 
                 // check all surrounding cells
-                foreach(var (dirX, dirY) in directions)
+                foreach (var (allowedDirection, dirX, dirY) in directions)
                 {
-                    if (IsValid(grid, visited, dirX, dirY, maxRows, maxCols))
+                    var nextX = queueItem.XPos + dirX;
+                    var nextY = queueItem.YPos + dirY;
+                    var nextMove = queueItem.Moves + 1;
+                    if (IsValid(grid, visited, allowedDirection, nextX, nextY, maxRows, maxCols))
                     {
-                        q.Enqueue(new pair(adjx, adjy));
-                        vis[adjx, adjy] = true;
+                        if (IsBorder(nextX, nextY, maxRows, maxCols) && nextMove <= maxMoves)
+                        {
+                            return (true, nextMove);
+                        }
+                        queue.Enqueue(new QueueMovement
+                        {
+                            XPos = nextX,
+                            YPos = nextY,
+                            Moves = nextMove
+                        });
+
+                        visited[nextY, nextX] = true;
                     }
                 }
-                for (int i = 0; i < 4; i++)
-                {
-                    int adjx = x + dRow[i];
-                    int adjy = y + dCol[i];
-                }
             }
+
+            return (false, 0);
         }
 
-        public bool IsValid(char[,] grid, bool[,] visited, int nextX, int nextY, int maxX, int maxY)
+        public bool IsValid(char[,] grid, bool[,] visited, char allowedDirection, int nextX, int nextY, int maxX, int maxY)
         {
-            if (visited[nextX, nextY])
-                return false;
             if (nextX < 0 || nextX >= maxX || nextY < 0 || nextY >= maxY)
                 return false;
+            if (visited[nextX, nextY])
+                return false;
+            if (grid[nextX, nextY] == '0')
+                return true;
+            if (grid[nextX, nextY] == allowedDirection)
+                return true;
 
+            return false;
         }
+
+        public bool IsBorder(int x, int y, int maxRows, int maxCols)
+        {
+            return x == 0 || x == maxRows -1 || y == 0 || y == maxCols - 1;
+        }
+    }
+
+    internal class QueueMovement
+    {
+        public int XPos { get; set; }
+        public int YPos { get; set; }
+        public int Moves { get; set; }
     }
 }
