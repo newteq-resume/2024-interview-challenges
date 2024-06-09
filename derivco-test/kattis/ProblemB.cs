@@ -54,11 +54,11 @@ namespace kattis
                 return;
             }
 
-            var a = CanReachEnd(grid, (startingPos.Item1, startingPos.Item2), maxNumberOfMoves);
-            if (!a.Item1)
+            var (canReadEnd, numberOfMovesToEnd) = CanReachEnd(grid, (startingPos.Item1, startingPos.Item2), maxNumberOfMoves);
+            if (!canReadEnd)
                 Console.WriteLine("NOT POSSIBLE");
             else
-                Console.WriteLine(a.Item2);
+                Console.WriteLine(numberOfMovesToEnd);
         }
 
         // https://www.geeksforgeeks.org/breadth-first-traversal-bfs-on-a-2d-array/
@@ -71,11 +71,6 @@ namespace kattis
                 ('R', 0, -1), // left - left col, row same
                 ('L', 0, 1)   // right - right col, row same
             };
-            //var directionAllowedMap = new Dictionary<char, (int, int)>();
-            //directionAllowedMap.Add('U', directions[1]);
-            //directionAllowedMap.Add('L', directions[3]);
-            //directionAllowedMap.Add('D', directions[0]);
-            //directionAllowedMap.Add('R', directions[2]);
 
             var maxRows = grid.GetLength(0);
             var maxCols = grid.GetLength(1);
@@ -104,18 +99,18 @@ namespace kattis
                 {
                     var nextX = queueItem.XPos + dirX;
                     var nextY = queueItem.YPos + dirY;
-                    var nextMove = queueItem.Moves + 1;
+                    var nextMoveCount = queueItem.Moves + 1;
                     if (IsValid(grid, visited, allowedDirection, nextX, nextY, maxRows, maxCols))
                     {
-                        if (IsBorder(nextX, nextY, maxRows, maxCols) && nextMove <= maxMoves)
+                        if (IsBorder(nextX, nextY, maxRows, maxCols) && nextMoveCount <= maxMoves)
                         {
-                            return (true, nextMove);
+                            return (true, nextMoveCount);
                         }
                         queue.Enqueue(new QueueMovement
                         {
                             XPos = nextX,
                             YPos = nextY,
-                            Moves = nextMove
+                            Moves = nextMoveCount
                         });
 
                         visited[nextX, nextY] = true;
@@ -123,7 +118,7 @@ namespace kattis
                 }
             }
 
-            return (false, 0);
+            return (false, -1);
         }
 
         public bool IsValid(char[,] grid, bool[,] visited, char allowedDirection, int nextX, int nextY, int maxX, int maxY)
