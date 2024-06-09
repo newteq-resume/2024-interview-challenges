@@ -54,8 +54,8 @@ namespace kattis
                 return;
             }
 
-            var (canReadEnd, numberOfMovesToEnd) = CanReachEnd(grid, (startingPos.Item1, startingPos.Item2), maxNumberOfMoves);
-            if (!canReadEnd)
+            var (canReachEnd, numberOfMovesToEnd) = CanReachEnd(grid, (startingPos.Item1, startingPos.Item2), maxNumberOfMoves);
+            if (!canReachEnd)
                 Console.WriteLine("NOT POSSIBLE");
             else
                 Console.WriteLine(numberOfMovesToEnd);
