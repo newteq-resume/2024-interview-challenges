@@ -1,4 +1,4 @@
 ﻿using kattis;
 
-IProblem problem = new ProblemA();
+IProblem problem = new ProblemB();
 problem.Run();
