@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace kattis
 {
@@ -10,9 +7,42 @@ namespace kattis
     {
         public void Run()
         {
+            var inputN = Convert.ToInt32(Console.ReadLine());
+            var listInputValues = new List<string>();
+            for (int i = 0; i < inputN; i++)
+            {
+                listInputValues.Add(Console.ReadLine()!);
+            }
+
+            foreach (var item in listInputValues)
+            {
+                var inputValues = item.Split(' ');
+                if (inputValues?.Length != 3)
+                {
+                    return;
+                }
+                var r = Convert.ToInt32(inputValues[0]);
+                var e = Convert.ToInt32(inputValues[1]);
+                var c = Convert.ToInt32(inputValues[2]);
+
+                var revenueAfterAd = e - c;
+
+                if (r > revenueAfterAd)
+                {
+                    Console.WriteLine("do not advertise");
+                }
+                else if (revenueAfterAd > r)
+                {
+                    Console.WriteLine("advertise");
+                }
+                else
+                {
+                    Console.WriteLine("does not matter");
+                }
+            }
 
         }
-        // Problem A - FIRST TRY
+        // Problem A - FIRST TRY simple test
         //var testCases = 3;
         //var tests = new List<string>();
         //tests.Add("0 100 70");
@@ -42,46 +72,5 @@ namespace kattis
         //        Console.WriteLine("does not matter");
         //    }
         //}
-
-        // SECOND TRY
-
-        //using System;
-        //using System.Collections.Generic;
-
-        //var inputN = Convert.ToInt32(Console.ReadLine());
-        //var listInputValues = new List<string>();
-        //for (int i = 0; i < inputN; i++)
-        //{
-        //    listInputValues.Add(Console.ReadLine()!);
-        //}
-
-        //foreach (var item in listInputValues)
-        //{
-        //    var inputValues = item.Split(' ');
-        //    if (inputValues?.Length != 3)
-        //    {
-        //        return;
-        //    }
-        //    var r = Convert.ToInt32(inputValues[0]);
-        //    var e = Convert.ToInt32(inputValues[1]);
-        //    var c = Convert.ToInt32(inputValues[2]);
-
-        //    var revenueAfterAd = e - c;
-
-        //    if (r > revenueAfterAd)
-        //    {
-        //        Console.WriteLine("do not advertise");
-        //    }
-        //    else if (revenueAfterAd > r)
-        //    {
-        //        Console.WriteLine("advertise");
-        //    }
-        //    else
-        //    {
-        //        Console.WriteLine("does not matter");
-        //    }
-        //}
-
-
     }
 }
