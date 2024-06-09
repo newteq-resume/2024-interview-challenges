@@ -126,13 +126,13 @@ namespace kattis
             // Iterate while the queue is not empty
             while (queue.Count != 0)
             {
-                var queueItem = queue.Dequeue();
+                var (x, y) = queue.Dequeue();
 
                 // check all surrounding cells
                 foreach (var (dirX, dirY) in directions)
                 {
-                    var nextX = queueItem.x + dirX;
-                    var nextY = queueItem.y + dirY;
+                    var nextX = x + dirX;
+                    var nextY = y + dirY;
                     if (IsValid(gridMap, visited, allowedPerson, nextX, nextY, maxRows, maxCols))
                     {
                         if ()
