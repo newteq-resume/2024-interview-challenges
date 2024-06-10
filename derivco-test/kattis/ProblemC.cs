@@ -57,11 +57,7 @@ namespace kattis
             for (int i = 0; i < inputNumberOfMoves; i++)
             {
                 var line = Console.ReadLine().Split(' ');
-                var numbersInLine = new List<int>();
-                foreach (var item in line)
-                {
-                    numbersInLine.Add(Convert.ToInt32(item));
-                }
+                var numbersInLine = Array.ConvertAll(line, int.Parse); // simplify the list to get all the numbers from the string values
                 // these start and end positions need to be subtracted by 1 because they are referencing the grid map as an index of 1 instead of 0
                 var startMove = (numbersInLine[0] -1, numbersInLine[1] -1);
                 var endMove = (numbersInLine[2] - 1, numbersInLine[3] - 1);
