@@ -37,8 +37,8 @@ namespace kattis
 1 1 10 20
 ";
             // for testing
-            //using var reader = new StringReader(testData);
-            //Console.SetIn(reader);
+            using var reader = new StringReader(testData);
+            Console.SetIn(reader);
 
             var inputParams1 = Console.ReadLine().Split(' ');
             var rows = Convert.ToInt32(inputParams1[0]);
@@ -120,6 +120,12 @@ namespace kattis
             {
                 var (x, y) = queue.Dequeue();
 
+                // the items on the queue are already valid so we just need to check it
+                if (x == endingPos.x && y == endingPos.y)
+                {
+                    return (true, whoAreWe);
+                }
+
                 // check all surrounding cells
                 foreach (var (dirX, dirY) in directions)
                 {
@@ -147,7 +153,7 @@ namespace kattis
 
         public bool IsValid(char[,] grid, bool[,] visited, char allowedPerson, int nextX, int nextY, int rowMax, int colMax)
         {
-            return nextX >= 0 && nextX < rowMax && nextY >= 0 && nextY < colMax && !visited[nextX, nextY] && grid[nextX, nextY] == allowedPerson;
+            return nextX >= 0 && nextY >= 0 && nextX < rowMax && nextY < colMax && !visited[nextX, nextY] && grid[nextX, nextY] == allowedPerson;
         }
     }
 }
