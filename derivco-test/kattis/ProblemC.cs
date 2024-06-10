@@ -37,8 +37,8 @@ namespace kattis
 1 1 10 20
 ";
             // for testing
-            using var reader = new StringReader(testData);
-            Console.SetIn(reader);
+            //using var reader = new StringReader(testData);
+            //Console.SetIn(reader);
 
             var inputParams1 = Console.ReadLine().Split(' ');
             var rows = Convert.ToInt32(inputParams1[0]);
@@ -126,8 +126,10 @@ namespace kattis
                     var nextX = x + dirX;
                     var nextY = y + dirY;
 
+                    if (nextX < 0 || nextX >= maxRows || nextY < 0 || nextY >= maxCols) { continue; }
+
                     // end a little earlier than before
-                    if (nextX == endingPos.x && nextY == endingPos.y)
+                    if (nextX == endingPos.x && nextY == endingPos.y && gridMap[nextX, nextY] == allowedPerson)
                     {
                         return (true, whoAreWe);
                     }
