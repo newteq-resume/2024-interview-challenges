@@ -62,8 +62,9 @@ namespace kattis
                 {
                     numbersInLine.Add(Convert.ToInt32(item));
                 }
-                var startMove = (numbersInLine[0], numbersInLine[1]);
-                var endMove = (numbersInLine[2], numbersInLine[3]);
+                // these start and end positions need to be subtracted by 1 because they are referencing the grid map as an index of 1 instead of 0
+                var startMove = (numbersInLine[0] -1, numbersInLine[1] -1);
+                var endMove = (numbersInLine[2] - 1, numbersInLine[3] - 1);
                 inputMoves.Add((startMove, endMove));
             }
             // now - inputMoves are all the moves that we need to go through
@@ -83,7 +84,7 @@ namespace kattis
 
             foreach (var (startingPos, endingPos) in inputMoves)
             {
-                // we're going to use the canReachEnd var to do some short curcuiting where applicable
+                // we're going to use the canReachEnd var to do some short circuiting where applicable
                 var (canReachEnd, who) = CanReachTarget(gridMap, startingPos, endingPos);
                 if (!canReachEnd)
                     Console.WriteLine("neither");
@@ -105,7 +106,7 @@ namespace kattis
 
             var whoAreWe = gridMap[startingPos.x, startingPos.y] == '1' ? "decimal" : "binary";
             var allowedPerson = gridMap[startingPos.x, startingPos.y];
-            // we're not moving, so short curcuit
+            // we're not moving, so short circuit
             if (startingPos.x == endingPos.x && startingPos.y == endingPos.y)
             {
                 return (true, whoAreWe);
@@ -135,7 +136,7 @@ namespace kattis
                     var nextY = y + dirY;
                     if (IsValid(gridMap, visited, allowedPerson, nextX, nextY, maxRows, maxCols))
                     {
-                        if ()
+                        if (nextX == endingPos.x && nextY == endingPos.y)
                         {
                             return (true, whoAreWe);
                         }
