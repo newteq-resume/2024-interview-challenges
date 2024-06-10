@@ -76,7 +76,7 @@ namespace kattis
             foreach (var (startingPos, endingPos) in inputMoves)
             {
                 // we're going to use the canReachEnd var to do some short circuiting where applicable
-                var (canReachEnd, who) = CanReachTarget(gridMap, startingPos, endingPos);
+                var (canReachEnd, who) = CanReach(gridMap, startingPos, endingPos, rows, cols);
                 if (!canReachEnd)
                     Console.WriteLine("neither");
                 else
@@ -140,7 +140,7 @@ namespace kattis
                         return (true, whoAreWe);
                     }
 
-                    if (IsValid(gridMap, visited, allowedPerson, nextX, nextY, maxRows, maxCols))
+                    if (!visited[nextX, nextY] && gridMap[nextX, nextY] == allowedPerson)
                     {
                         queue.Enqueue((nextX, nextY));
                         visited[nextX, nextY] = true;
@@ -151,9 +151,53 @@ namespace kattis
             return (false, string.Empty);
         }
 
-        public bool IsValid(char[,] grid, bool[,] visited, char allowedPerson, int nextX, int nextY, int rowMax, int colMax)
+        static (bool, string) CanReach(char[,] map, (int x, int y) startingPos, (int x, int y) endingPos, int rows, int cols)
         {
-            return nextX >= 0 && nextY >= 0 && nextX < rowMax && nextY < colMax && !visited[nextX, nextY] && grid[nextX, nextY] == allowedPerson;
+            if (startingPos.x < 0 || startingPos.x >= rows || startingPos.y < 0 || startingPos.y >= cols ||
+                endingPos.x < 0 || endingPos.x >= rows || endingPos.y < 0 || endingPos.y >= cols ||
+                map[startingPos.x, startingPos.y] != map[endingPos.x, endingPos.y])
+            {
+                return (false, string.Empty);
+            }
+
+            char targetValue = map[startingPos.x, startingPos.y];
+            var whoAreWe = targetValue == '1' ? "decimal" : "binary";
+            bool[,] visited = new bool[rows, cols];
+            return (DFS(map, startingPos, endingPos, targetValue, visited), whoAreWe);
+        }
+
+        static bool DFS(char[,] map, (int x, int y) startingPos, (int x, int y) endingPos, int targetValue, bool[,] visited)
+        {
+            int rows = map.GetLength(0);
+            int cols = map.GetLength(1);
+
+            if (startingPos.x < 0 || startingPos.x >= rows || startingPos.y < 0 || startingPos.y >= cols || visited[startingPos.x, startingPos.y] || map[startingPos.x, startingPos.y] != targetValue)
+            {
+                return false;
+            }
+
+            if (startingPos.x == endingPos.x && startingPos.y == endingPos.y)
+            {
+                return true;
+            }
+
+            visited[startingPos.x, startingPos.y] = true;
+
+            int[] dx = { -1, 1, 0, 0 };
+            int[] dy = { 0, 0, -1, 1 };
+
+            for (int i = 0; i < 4; i++)
+            {
+                int nx = startingPos.x + dx[i];
+                int ny = startingPos.y + dy[i];
+
+                if (DFS(map, (nx, ny), endingPos, targetValue, visited))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }
