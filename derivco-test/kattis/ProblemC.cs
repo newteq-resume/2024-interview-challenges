@@ -69,17 +69,12 @@ namespace kattis
             }
             // now - inputMoves are all the moves that we need to go through
 
-            var currentRow = 0;
-            var currentCol = 0;
-            foreach (var line in inputMap)
+            for (int r = 0; r < rows; r++)
             {
-                foreach (var item in line)
+                for (int c = 0; c < cols; c++)
                 {
-                    gridMap[currentRow, currentCol] = item;
-                    currentCol++;
+                    gridMap[r, c] = inputMap[r][c];
                 }
-                currentRow++;
-                currentCol = 0;
             }
 
             foreach (var (startingPos, endingPos) in inputMoves)
