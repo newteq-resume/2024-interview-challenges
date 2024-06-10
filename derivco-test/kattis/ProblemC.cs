@@ -149,21 +149,9 @@ namespace kattis
             return (false, string.Empty);
         }
 
-        public bool IsValid(char[,] grid, bool[,] visited, char allowedPerson, int nextX, int nextY, int maxX, int maxY)
+        public bool IsValid(char[,] grid, bool[,] visited, char allowedPerson, int nextX, int nextY, int rowMax, int colMax)
         {
-            if (nextX < 0 || nextX >= maxX || nextY < 0 || nextY >= maxY)
-                return false;
-            if (visited[nextX, nextY])
-                return false;
-            if (grid[nextX, nextY] == allowedPerson)
-                return true;
-
-            return false;
-        }
-
-        public bool IsEnd(int xEnd, int yEnd)
-        {
-            return  == 0 || x == maxRows - 1 || y == 0 || y == maxCols - 1;
+            return nextX >= 0 && nextX < rowMax && nextY >= 0 && nextY < colMax && !visited[nextX, nextY] && grid[nextX, nextY] == allowedPerson;
         }
     }
 }
