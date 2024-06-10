@@ -14,44 +14,31 @@ namespace kattis
      * this will either be 1 or 0, so either decimal or binary (respectively)
      * if we have move along all the 1's or 0's depending on what we are, to the end, then we can move.
      * otherwise, it will simply be "neither" as the output
+     * 
+     * I tried with a DFS approach too, because it might go to the end "faster" rather than finding the shortest path, but it didn't work
+     * So we're just gonna leave it with the original BFS since it's easier to understand
      */
 
     internal class ProblemC : IProblem
     {
         public void Run()
         {
-            var testData = @"10 20
-11111111111111111111
-11000000000000000101
-11111111111111110000
-11111111111111110000
-11000000000000000111
-00011111111111111111
-00111111111111111111
-10000000000000001111
-11111111111111111111
-11111111111111111111
-3
-2 3 8 16
-8 1 7 3
-1 1 10 20
-";
             // for testing
-            using var reader = new StringReader(testData);
-            Console.SetIn(reader);
+            //using var reader = new StringReader(testData);
+            //Console.SetIn(reader);
 
+            // get the map information
             var inputParams1 = Console.ReadLine().Split(' ');
             var rows = Convert.ToInt32(inputParams1[0]);
             var cols = Convert.ToInt32(inputParams1[1]);
-
             var inputMap = new List<string>();
             for (int i = 0; i < rows; i++)
             {
                 inputMap.Add(Console.ReadLine());
             }
             var gridMap = new char[rows, cols];
-            // the above gives us the map that we need to look at
 
+            // get all the moves that we need to traverse
             var inputNumberOfMoves = Convert.ToInt32(Console.ReadLine());
             var inputMoves = new List<((int, int), (int, int))>();
             for (int i = 0; i < inputNumberOfMoves; i++)
@@ -63,7 +50,6 @@ namespace kattis
                 var endMove = (numbersInLine[2] - 1, numbersInLine[3] - 1);
                 inputMoves.Add((startMove, endMove));
             }
-            // now - inputMoves are all the moves that we need to go through
 
             for (int r = 0; r < rows; r++)
             {
@@ -76,7 +62,7 @@ namespace kattis
             foreach (var (startingPos, endingPos) in inputMoves)
             {
                 // we're going to use the canReachEnd var to do some short circuiting where applicable
-                var (canReachEnd, who) = CanReach(gridMap, startingPos, endingPos, rows, cols);
+                var (canReachEnd, who) = CanReachTarget(gridMap, startingPos, endingPos, rows, cols);
                 if (!canReachEnd)
                     Console.WriteLine("neither");
                 else
@@ -85,7 +71,7 @@ namespace kattis
 
         }
 
-        public (bool, string) CanReachTarget(char[,] gridMap, (int x, int y) startingPos, (int x, int y) endingPos)
+        public (bool, string) CanReachTarget(char[,] gridMap, (int x, int y) startingPos, (int x, int y) endingPos, int maxRows, int maxCols)
         {
             var directions = new (int, int)[]
             {
@@ -102,9 +88,6 @@ namespace kattis
             {
                 return (true, whoAreWe);
             }
-
-            var maxRows = gridMap.GetLength(0);
-            var maxCols = gridMap.GetLength(1);
 
             var visited = new bool[maxRows, maxCols];
 
@@ -149,55 +132,6 @@ namespace kattis
             }
 
             return (false, string.Empty);
-        }
-
-        static (bool, string) CanReach(char[,] map, (int x, int y) startingPos, (int x, int y) endingPos, int rows, int cols)
-        {
-            if (startingPos.x < 0 || startingPos.x >= rows || startingPos.y < 0 || startingPos.y >= cols ||
-                endingPos.x < 0 || endingPos.x >= rows || endingPos.y < 0 || endingPos.y >= cols ||
-                map[startingPos.x, startingPos.y] != map[endingPos.x, endingPos.y])
-            {
-                return (false, string.Empty);
-            }
-
-            char targetValue = map[startingPos.x, startingPos.y];
-            var whoAreWe = targetValue == '1' ? "decimal" : "binary";
-            bool[,] visited = new bool[rows, cols];
-            return (DFS(map, startingPos, endingPos, targetValue, visited), whoAreWe);
-        }
-
-        static bool DFS(char[,] map, (int x, int y) startingPos, (int x, int y) endingPos, int targetValue, bool[,] visited)
-        {
-            int rows = map.GetLength(0);
-            int cols = map.GetLength(1);
-
-            if (startingPos.x < 0 || startingPos.x >= rows || startingPos.y < 0 || startingPos.y >= cols || visited[startingPos.x, startingPos.y] || map[startingPos.x, startingPos.y] != targetValue)
-            {
-                return false;
-            }
-
-            if (startingPos.x == endingPos.x && startingPos.y == endingPos.y)
-            {
-                return true;
-            }
-
-            visited[startingPos.x, startingPos.y] = true;
-
-            int[] dx = { -1, 1, 0, 0 };
-            int[] dy = { 0, 0, -1, 1 };
-
-            for (int i = 0; i < 4; i++)
-            {
-                int nx = startingPos.x + dx[i];
-                int ny = startingPos.y + dy[i];
-
-                if (DFS(map, (nx, ny), endingPos, targetValue, visited))
-                {
-                    return true;
-                }
-            }
-
-            return false;
         }
     }
 }
