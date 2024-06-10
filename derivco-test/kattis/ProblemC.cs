@@ -98,7 +98,7 @@ namespace kattis
             var whoAreWe = gridMap[startingPos.x, startingPos.y] == '1' ? "decimal" : "binary";
             var allowedPerson = gridMap[startingPos.x, startingPos.y];
             // we're not moving, so short circuit
-            if (startingPos.x == endingPos.x && startingPos.y == endingPos.y)
+            if (startingPos == endingPos)
             {
                 return (true, whoAreWe);
             }
@@ -125,12 +125,15 @@ namespace kattis
                 {
                     var nextX = x + dirX;
                     var nextY = y + dirY;
+
+                    // end a little earlier than before
+                    if (nextX == endingPos.x && nextY == endingPos.y)
+                    {
+                        return (true, whoAreWe);
+                    }
+
                     if (IsValid(gridMap, visited, allowedPerson, nextX, nextY, maxRows, maxCols))
                     {
-                        if (nextX == endingPos.x && nextY == endingPos.y)
-                        {
-                            return (true, whoAreWe);
-                        }
                         queue.Enqueue((nextX, nextY));
                         visited[nextX, nextY] = true;
                     }
