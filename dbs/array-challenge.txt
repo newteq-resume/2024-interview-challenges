@@ -1,0 +1,55 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+class MainClass {
+
+  /*
+  A note about the original example in challenge text. 2-2 is not the least. it should be 2-3 based on the input shown
+
+  here's the examples of the matrix
+  5  4  2
+  12 4  3
+  3  4  13
+  result 1-3,2-3,3-1
+
+  1 2 1
+  4 1 5
+  5 2 1
+  result 1-1, 2-2,3-3
+
+  // even this one doesn't make sense from the example on the left...
+  13  4  7  6
+  1   11 5  4
+  6   7  2  8
+  1   3  5  9
+  result 1-2, 2-1, 3-3, 4-1
+
+  */
+
+
+  public static string ArrayChallenge(string[] strArr) {
+
+    var rowId = 1;
+    var builder = new StringBuilder();
+    foreach(var row in strArr) {
+      var numbers = Array.ConvertAll<string, int>(row.Split('(', ')', ',').Where(x => !string.IsNullOrWhiteSpace(x)).ToArray(), int.Parse);
+      var lowest = numbers.Min();
+      var columnId = Array.FindIndex(numbers, x => x == lowest) + 1;
+      builder.Append($"({rowId}-{columnId})");
+
+      rowId++;
+    }
+    return builder.ToString();
+
+  }
+
+  static void Main() {  
+
+    // keep this function call here
+    Console.WriteLine(ArrayChallenge(Console.ReadLine()));
+    
+  } 
+
+}
