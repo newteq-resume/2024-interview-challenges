@@ -6,43 +6,69 @@ using System.Text;
 class MainClass {
 
   /*
-  A note about the original example in challenge text. 2-2 is not the least. it should be 2-3 based on the input shown
+  OK, so, the problem here is that we need to find the cheapest cost where each task can only be run once. This is why my original statement was incorrect.
+  This means that the answers for the examples given are correct. Below is just a sample of those things
 
   here's the examples of the matrix
   5  4  2
   12 4  3
   3  4  13
-  result 1-3,2-3,3-1
+  result 1-3,2-2,3-1
 
   1 2 1
   4 1 5
   5 2 1
   result 1-1, 2-2,3-3
 
-  // even this one doesn't make sense from the example on the left...
   13  4  7  6
   1   11 5  4
   6   7  2  8
   1   3  5  9
-  result 1-2, 2-1, 3-3, 4-1
-
+  result 1-2, 2-4, 3-3, 4-1
   */
 
 
   public static string ArrayChallenge(string[] strArr) {
 
-    var rowId = 1;
+    var rowId = 0;
+    var colId = 0;
     var builder = new StringBuilder();
-    foreach(var row in strArr) {
-      var numbers = Array.ConvertAll<string, int>(row.Split('(', ')', ',').Where(x => !string.IsNullOrWhiteSpace(x)).ToArray(), int.Parse);
-      var lowest = numbers.Min();
-      var columnId = Array.FindIndex(numbers, x => x == lowest) + 1;
-      builder.Append($"({rowId}-{columnId})");
 
+    var rowSize = strArr.Length;
+    var colSize = strArr[0].Split('(', ')', ',').Where(x => !string.IsNullOrWhiteSpace(x)).Count();
+    var matrix = new int[rowSize, colSize];
+
+    foreach(var row in strArr) {
+      colId = 0;
+      var numbers = Array.ConvertAll(row.Split('(', ')', ',').Where(x => !string.IsNullOrWhiteSpace(x)).ToArray(), int.Parse);
+      foreach(var num in numbers) {
+        matrix[rowId, colId] = num;
+        colId++;
+      }
+      var lowest = numbers.Min();
+      var columnId = Array.FindIndex(numbers, x => x == lowest);
+      //builder.Append($"({rowId}-{columnId})");
       rowId++;
     }
+
+    for(var i = 0; i < rowSize; i++) {
+      for(var j = 0; j < colSize; j++) {
+        Console.WriteLine($"item: {matrix[i,j]}");
+      }
+    }
+
+
     return builder.ToString();
 
+  }
+
+  private class Matrix {
+    public int RowId {get;set;}
+    public int ColId {get;set;}
+    public int Value {get;set;}
+    public override string ToString() {
+      return $"row: {RowId}, col: {ColId}, Value: {Value}";
+    }
   }
 
   static void Main() {  
